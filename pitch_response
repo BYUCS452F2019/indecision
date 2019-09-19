@@ -1,0 +1,7 @@
+I think this is a simple project that could be accomplished this semester that would be fun to work on. I also think it could be easily scoped for the time we have. It could be expanded to include reviews, preferences, locations and what other people with similar choices chose or on the other hand the project could be kept very simple. 
+
+I have used PostgreSQL for a SQL database and Mongo and DynamoDB for NoSQL, but I’m down to learning something new. I’m comfortable with front end or backend. I’ve mostly used angular or react for front end and java or node for the backend, but I’m open to learning Golang.
+
+As far as business goes, I’m good with just making it a free project for school. 
+For legal I think the user data can be kept minimal besides saving their preferences. 
+For technical it might take some work to find available API’s, but I think it’s probably doable.
