@@ -9,40 +9,51 @@ User(UserID, UserName)
 
 ---
 
+Choice Table
+---
+#### Description:
+ - The choice table contains IDs for all the available choices and the information that is shared across all choice types.
+#### Schema:
+Choice (ChoiceID, Url, PictureURL)
+  - Foreign Key UserID references User
+
+---
+
 Restaurant Table
 ---
 #### Description:
- - The Restaurant table contains records of various places to eat that will be used as options in the decision making process.
+ - The Restaurant table is a choice subtype that contains records of various places to eat that will be used as options in the decision making process. It is associated with a Choice.
 #### Schema:
-Restaurant(RestID, RestName, Category, Location, Price) |
+Restaurant(RestID, RestName, Category, Location, Price, ChoiceId) |
+  - Foreign Key ChoiceId references Choice
 
 ---
 
 Movie Table
 ---
 #### Description:
- - The Movie table contains records of various movies to watch that will be used as options in the decision making process.
+ - The Movie table is a choice subtype and contains records of various movies to watch that will be used as options in the decision making process. It is associated with a Choice.
 #### Schema:
-Movie ( )
+Movie (MovieId, Title, Genre, ChoiceId)
+  - Foreign Key ChoiceID references Choice
 
 ---
-
-RestaurantWinner Table
+Round Table
 ---
 #### Description:
- - The RestaurantWinner table contains records of the winners from previous decisions made. The table contains a reference to the user and the restaurant that was chosen.
+ - The Round table contains records from each round a user has participated in. The table contains a reference to the user, the round type and the status of the round.
 #### Schema:
-RestaurantWinner (WinnerID, UserID, RestID, Date)
+Round (RoundID, UserID, Type, Status)
   - Foreign Key UserID references User
-  - Foreign Key RestID references Restaurant
- 
 ---
 
-MovieWinner Table
+Match Table
 ---
 #### Description:
-- The MovieWinner table contains records of the winners from previous decisions made. The table contains a reference to the user and the movie that was chosen.
+ - The Match table contains records of the individual matches from each round. The table contains a reference to the round, the winning choice, the losing choice and where the match occured in the round.
 #### Schema:
-MovieWinner (WinnerID, UserID, RestID, Date)
- - Foreign Key UserID references User
- - Foreign Key MovieID references Movie
+Match (MatchId, RoundId, LosingId, WinningId, MatchNumber)
+  - Foreign Key RoundId references Round
+  - Foreign Key LosingId references Choice
+  - Foreign Key LosingId references Choice
+---
