@@ -23,7 +23,7 @@ Movie Table
 #### Description:
  - The Movie table contains records of various movies to watch that will be used as options in the decision making process.
 #### Schema:
-Movie ( )
+Movie (MovieId, Title, Genre )
 
 ---
 
