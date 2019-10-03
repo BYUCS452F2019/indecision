@@ -1,5 +1,7 @@
 # Indecision Schema
 
+The first column is the key column in each table.
+
 User Table
 ---
 #### Description:
@@ -12,7 +14,7 @@ User(UserID, UserName)
 Restaurant Table
 ---
 #### Description:
- - The Restaurant table contains records of various places to eat that will be used as options in the decision making process.
+ - The Restaurant table contains records of various places to eat that will be used as options in the decision making process. Each column is an attribute of a restaurant that will be displayed to the user.
 #### Schema:
 Restaurant(RestID, RestName, Category, Location, Price) |
 
