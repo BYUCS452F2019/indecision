@@ -1,0 +1,133 @@
+<div class="row" *ngIf="!winner">
+    <div>
+        <div class="flip-card">
+            <div class="card text-white bg-danger mb-3 flip-card-inner" [class.flipped]="redFlipped" style="max-width: 20rem;">
+                <div class="flip-card-front">
+                    <div class="card-header">{{baseList[0].name}}
+                        <i class="material-icons info-button" (click)="redFlipped=true">
+                          info_outline
+                          </i>
+                    </div>
+                    <div class="card-body">
+                        <img class="choice-image" [src]="baseList[0].imageURL">
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="card-header">
+                        <i class="material-icons info-button left" (click)="redFlipped=false">
+                    arrow_back
+                    </i>
+                        <span>Option 1</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{baseList[0].name}}</h4>
+                        <p class="card-text">{{baseList[0].description}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 10px;" (click)="winner = baseList[0]">I choose you!</button>
+    </div>
+
+    <div>
+        <div class="flip-card">
+            <div class="card text-white bg-info mb-3 flip-card-inner" [class.flipped]="blueFlipped" style="max-width: 20rem;">
+                <div class="flip-card-front">
+                    <div class="card-header">{{baseList[1].name}}
+                        <i class="material-icons info-button" (click)="blueFlipped=true">
+                      info_outline
+                      </i>
+                    </div>
+                    <div class="card-body">
+                        <img class="choice-image" [src]="baseList[1].imageURL">
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="card-header">
+                        <i class="material-icons info-button left" (click)="blueFlipped=false">
+                    arrow_back
+                    </i>
+                        <span>Option 2</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{baseList[1].name}}</h4>
+                        <p class="card-text">{{baseList[1].description}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 10px;" (click)="winner = baseList[1]">I choose you!</button>
+    </div>
+
+    <div>
+        <div class="flip-card">
+            <div class="card text-white bg-warning mb-3 flip-card-inner" [class.flipped]="yellowFlipped" style="max-width: 20rem;">
+                <div class="flip-card-front">
+                    <div class="card-header">{{baseList[2].name}}
+                        <i class="material-icons info-button" (click)="yellowFlipped=true">
+                      info_outline
+                      </i>
+                    </div>
+                    <div class="card-body">
+                        <img class="choice-image" [src]="baseList[2].imageURL">
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="card-header">
+                        <i class="material-icons info-button left" (click)="yellowFlipped=false">
+                    arrow_back
+                    </i>
+                        <span>Option 3</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{baseList[2].name}}</h4>
+                        <p class="card-text">{{baseList[2].description}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 10px;" (click)="winner = baseList[2]">I choose you!</button>
+    </div>
+
+</div>
+
+<div class="row win" *ngIf="winner">
+    <div>
+        <div class="flip-card">
+            <div class="card text-white bg-success mb-3 flip-card-inner winner" [class.flipped]="greenFlipped" style="max-width: 20rem;">
+                <div class="flip-card-front">
+
+                    <div class="card-header">Winner!
+                        <i class="material-icons info-button" (click)="greenFlipped=true">
+              info_outline
+              </i>
+                    </div>
+                    <div class="card-body">
+                        <img class="choice-image" [src]="winner.imageURL">
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="card-header">
+                        <i class="material-icons info-button left" (click)="greenFlipped=false">
+                    arrow_back
+                    </i>
+                        <span>Winner!</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{winner.name}}</h4>
+                        <p class="card-text">{{winner.description}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 35px;" (click)="winner = null">Pick again!</button>
+    </div>
+
+</div>

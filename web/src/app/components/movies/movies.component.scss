@@ -1,0 +1,14 @@
+.choice-image {
+    margin: auto;
+    width: 250px;
+    height: 142px;
+}
+
+.info-button {
+    float: right;
+    cursor: pointer;
+    &.left {
+        float: left;
+        margin-right: 10px;
+    }
+}
