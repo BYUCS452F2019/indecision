@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ListItem } from '../food/food.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Movie } from '../../objects';
 
 @Component({
   selector: 'app-movies',
@@ -12,30 +13,53 @@ export class MoviesComponent implements OnInit {
   yellowFlipped = false;
   greenFlipped = false;
 
-  baseList: ListItem[] = [
-    {
-      name: 'Star Wars',
-      description: 'A long time ago, in a galaxy far, far away...',
-      price: 1,
-      imageURL: 'https://vignette.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest?cb=20190313021755'
-    },
-    {
-      name: 'Toy Story',
-      description: 'An animated film about toys that come to life when humans aren\'t around.',
-      price: 1,
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Toy_Story_logo.svg/1200px-Toy_Story_logo.svg.png'
-    },
-    {
-      name: 'Won\'t You Be My Neighbor?',
-      description: 'A documentary about the life of Mr. Rogers.',
-      price: 2,
-      imageURL: 'https://www.92y.org/92streety/media/img/talks/lg/wont-you-by-my-neighbor.jpg'
-    }
-  ];
-  winner: ListItem;
+  baseList: Movie[] = [];
+  currentList: Movie[] = [];
+  roundWinners: Movie[] = [];
+  winner: Movie;
 
-  constructor() { }
+  private headers: HttpHeaders;
+
+  constructor(private http: HttpClient) {
+    
+  }
 
   ngOnInit() {
+    this.winner = null;
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    this.http.get('http://localhost:5500/choices/movies', { headers: this.headers}).toPromise().then((answer) => {
+      this.baseList = answer as Movie[];
+      for (const r of this.baseList) {
+        this.currentList.push(r);
+      }
+      console.log('Movie list is', this.baseList);
+    });
+  }
+
+  selectWinner(r: Movie) {
+    this.roundWinners.push(r);
+    if (this.currentList.length === 3) {
+      this.currentList.splice(0, 3);
+    } else {
+      this.currentList.splice(0, 2);
+    }
+
+    console.log('Selection:', r);
+    console.log('Round winners:', this.roundWinners);
+    console.log('What is left over:', this.currentList);
+
+    if (this.currentList.length === 0) {
+      this.currentList = [];
+      this.currentList.push(...this.roundWinners);
+      this.roundWinners = [];
+    }
+  }
+
+  reset() {
+    this.currentList = [];
+    this.currentList.push(...this.baseList);
   }
 }

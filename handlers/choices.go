@@ -16,7 +16,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "1",
-				PictureURL: "",
+				PictureURL: "https://130e178e8f8ba617604b-8aedd782b7d22cfe0d1146da69a52436.ssl.cf1.rackcdn.com/wendys-reaches-50-million-breach-settlement-banks-showcase_image-8-a-12032.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "1",
@@ -25,7 +25,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "2",
-				PictureURL: "",
+				PictureURL: "https://cdn.junglecreations.com/wp/junglecms/2019/04/77a4227c-mcdonalds-free-breakfast-feature.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "2",
@@ -34,7 +34,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "3",
-				PictureURL: "",
+				PictureURL: "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,q_75,w_1200/https://assets.simpleviewinc.com/simpleview/image/upload/crm/sandysprings/Chick-fil-a-Northridge-DTO---logo-resized-95aaa9a05056b3a_95aaaa9b-5056-b3a8-493eb82fb0c5d336.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "3",
@@ -43,7 +43,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "4",
-				PictureURL: "",
+				PictureURL: "https://image.shutterstock.com/image-photo/columbusohusa-july-242017-exterior-olive-600w-1218524122.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "4",
@@ -52,7 +52,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "5",
-				PictureURL: "",
+				PictureURL: "https://image.shutterstock.com/image-photo/miami-usa-august-22-2018-600w-1181057281.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "5",
@@ -61,7 +61,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "6",
-				PictureURL: "",
+				PictureURL: "https://static.wixstatic.com/media/5ac7a5_bae3cfebb7574f29b0bab1d58e4e5632~mv2_d_3000_1632_s_2.jpg/v1/fill/w_3000,h_1632,al_c/5ac7a5_bae3cfebb7574f29b0bab1d58e4e5632~mv2_d_3000_1632_s_2.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "6",
@@ -70,7 +70,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "7",
-				PictureURL: "",
+				PictureURL: "https://d3dx3xtlhhlssb.cloudfront.net/cms/meta/open-graph/caferio-ogimage.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "7",
@@ -79,7 +79,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "8",
-				PictureURL: "",
+				PictureURL: "https://ewscripps.brightspotcdn.com/dims4/default/8b3833e/2147483647/strip/true/crop/640x360+0+21/resize/1280x720!/quality/90/?url=https%3A%2F%2Fsharing.wxyz.com%2Fsharescnn%2Fphoto%2F2017%2F11%2F30%2F14805645242_7431b4e1b3_o_red-robin_73066708_ver1.0_640_480.jpg",
 				Type:       "restaurant",
 			},
 			RestaurantID: "8",
@@ -91,7 +91,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "9",
-				PictureURL: "",
+				PictureURL: "https://thegrio.com/wp-content/uploads/2019/07/lion-king-2-e1562857035506.jpg",
 				Type:       "movie",
 			},
 			MovieID: "1",
@@ -100,7 +100,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "10",
-				PictureURL: "",
+				PictureURL: "http://annyas.com/screenshots/images/2006/p-cn-04.jpg",
 				Type:       "movie",
 			},
 			MovieID: "2",
@@ -109,7 +109,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "11",
-				PictureURL: "",
+				PictureURL: "https://i.redd.it/dzqf2ph1e9v01.jpg",
 				Type:       "movie",
 			},
 			MovieID: "3",
@@ -118,7 +118,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "12",
-				PictureURL: "",
+				PictureURL: "https://vignette.wikia.nocookie.net/logopedia/images/4/47/Wall-e-disneyscreencaps.com-248.jpg/revision/latest?cb=20161129004221",
 				Type:       "movie",
 			},
 			MovieID: "4",
@@ -127,7 +127,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "13",
-				PictureURL: "",
+				PictureURL: "https://i.ytimg.com/vi/uoRbFgGwDZY/maxresdefault.jpg",
 				Type:       "movie",
 			},
 			MovieID: "5",
@@ -136,7 +136,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "14",
-				PictureURL: "",
+				PictureURL: "https://bplusmovieblog.files.wordpress.com/2013/06/the-lord-of-the-rings-the-return-of-the-king-title-card.png",
 				Type:       "movie",
 			},
 			MovieID: "6",
@@ -145,7 +145,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "15",
-				PictureURL: "",
+				PictureURL: "http://annyas.com/screenshots/updates/wp-content/uploads/2016/01/strange-brew-blu-ray-movie-title-small.jpg",
 				Type:       "movie",
 			},
 			MovieID: "7",
@@ -154,7 +154,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "16",
-				PictureURL: "",
+				PictureURL: "http://annyas.com/screenshots/images/2004/incredibles-blu-ray-movie-title.jpg",
 				Type:       "movie",
 			},
 			MovieID: "8",
