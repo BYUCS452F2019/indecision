@@ -9,6 +9,7 @@ import { AboutComponent } from './components/about/about.component';
 
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { HomeComponent } from './components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './components/home/home.component';
     BrowserModule,
     AppRoutingModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
