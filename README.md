@@ -26,3 +26,9 @@ User data would be stored to be able to track potential preferences, but the pla
 Using various APIs to query data such as Yelp, Fandango, etc. I know at least the Yelp API has a limit on queries per day, so the use of the database is to cache already queried data so that those APIs would have to be queried less often. User information would also be stored in a database so as to keep track of user preferences and location to better match them up with information stored in the other databases.
  - Front end envisioned as a website, preferrably done as an Angular project as that is what I most familiar with.
  - Back end server would preferrably be done in Golang (again, it's what I am most familiar with) but I am open to other options if they seem to fit the scope better.
+
+## To Run
+To start the server install mysql and create the database indecision
+
+Run the command "go run server.go -username [mysqlusername] -password [mysqlpassword]"
+
