@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"net/http"
-
 	"github.com/jpw547/indecision/structs"
 	"github.com/labstack/echo"
 )
@@ -163,18 +162,58 @@ func init() {
 	}
 }
 
+
 // GetChoicesByType returns a list of options to choose from that are of the specified type
 func GetChoicesByType(ctx echo.Context) error {
 	// get the type from the context
 	choiceType := ctx.Param("type")
-
 	// TODO: implement database access for choices
 	if choiceType == "food" {
-		return ctx.JSON(http.StatusOK, food)
+		val,err:=store.GetFood()
+		if err != nil {
+			return ctx.String(http.StatusInternalServerError, err.Error())
+		}else{
+			return ctx.JSON(http.StatusOK, val)
+		}
 	}
 	if choiceType == "movies" {
-		return ctx.JSON(http.StatusOK, movies)
+		val,err:=store.GetMovies()
+		if err != nil {
+			return ctx.String(http.StatusInternalServerError, err.Error())
+		}else{
+			return ctx.JSON(http.StatusOK, val)
+		}
 	}
 
 	return ctx.String(http.StatusBadRequest, "unknown choice type")
+}
+
+
+
+// GetChoicesByType returns a list of options to choose from that are of the specified type
+func CreateUser(ctx echo.Context) error {
+	// get the type from the context
+	user := structs.User{"hi","bye"}
+	err:=store.CreateUser(&user)
+	if err != nil {
+		return ctx.String(http.StatusInternalServerError, err.Error())
+	}else{
+		return ctx.String(http.StatusOK,"OK")
+	}
+
+}
+
+// GetChoicesByType returns a list of options to choose from that are of the specified type
+func GetUser(ctx echo.Context) error {
+	// get the type from the context
+	username := ctx.Param("username")
+
+	user := structs.User{"hi",username}
+	val,err:=store.GetUser(&user)
+	if err != nil {
+		return ctx.String(http.StatusInternalServerError, err.Error())
+	}else{
+		return ctx.JSON(http.StatusOK, val)
+	}
+
 }
