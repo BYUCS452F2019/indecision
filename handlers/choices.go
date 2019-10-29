@@ -91,7 +91,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "9",
-				PictureURL: "https://thegrio.com/wp-content/uploads/2019/07/lion-king-2-e1562857035506.jpg",
+				PictureURL: "https://static01.nyt.com/images/2019/07/21/arts/21lionking-notebook1/21lionking-notebook1-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
 				Type:       "movie",
 			},
 			MovieID: "1",
@@ -136,7 +136,7 @@ func init() {
 		{
 			Choice: structs.Choice{
 				ID:         "14",
-				PictureURL: "https://bplusmovieblog.files.wordpress.com/2013/06/the-lord-of-the-rings-the-return-of-the-king-title-card.png",
+				PictureURL: "https://tokybook.com/wp-content/uploads/2017/08/The-Return-of-the-King-2003-movie.jpg",
 				Type:       "movie",
 			},
 			MovieID: "6",
