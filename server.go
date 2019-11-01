@@ -64,8 +64,12 @@ func main() {
 
 	// define endpoints
 	server.GET("/choices/:type", handlers.GetChoicesByType)
-	server.POST("/user", handlers.CreateUser)
-	server.GET("/user/:username", handlers.GetUser)
+	server.POST("/choices/:type", handlers.CreateChoice)
+	server.DELETE("/choices/:type", handlers.DeleteChoiceById)
+	
+	server.POST("/users", handlers.CreateUser)
+	server.GET("/users/:username", handlers.GetUser)
+	server.DELETE("/users/:username", handlers.DeleteUserByUsername)
 
 	server.Group("", middleware.StaticWithConfig(middleware.StaticConfig{
 		Root:   "web-dist",

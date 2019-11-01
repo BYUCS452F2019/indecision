@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"github.com/jpw547/indecision/structs"
 	"github.com/labstack/echo"
+	"fmt"
+
 )
 
 var food []structs.Restaurant
@@ -187,14 +189,30 @@ func GetChoicesByType(ctx echo.Context) error {
 
 	return ctx.String(http.StatusBadRequest, "unknown choice type")
 }
+// GetChoicesByType returns a list of options to choose from that are of the specified type
+func DeleteChoiceById(ctx echo.Context) error {
+	// get the type from the context
+	choiceType := ctx.Param("type")
+	fmt.Println(choiceType)
+	err:=store.DeleteChoiceById(choiceType)
+	if err != nil {
+		return ctx.String(http.StatusInternalServerError, err.Error())
+	}else{
+		return ctx.JSON(http.StatusOK,"OK")
+	}
 
+}
 
 
 // GetChoicesByType returns a list of options to choose from that are of the specified type
 func CreateUser(ctx echo.Context) error {
 	// get the type from the context
-	user := structs.User{"hi","bye"}
-	err:=store.CreateUser(&user)
+	var u structs.User;
+	err:=ctx.Bind(&u);
+	if err != nil {
+		return ctx.String(http.StatusBadRequest, err.Error())
+	}
+	err=store.CreateUser(&u)
 	if err != nil {
 		return ctx.String(http.StatusInternalServerError, err.Error())
 	}else{
@@ -202,18 +220,59 @@ func CreateUser(ctx echo.Context) error {
 	}
 
 }
+// GetChoicesByType returns a list of options to choose from that are of the specified type
+func CreateChoice(ctx echo.Context) error {
+	// get the type from the context
+	// get the type from the context
+	choiceType := ctx.Param("type")
+	// TODO: implement database access for choices
+	if choiceType == "food" {
+		var r structs.Restaurant;
+		err:=ctx.Bind(&r);
+		err=store.CreateRestaurant(&r)
+		if err != nil {
+			return ctx.String(http.StatusInternalServerError, err.Error())
+		}else{
+			return ctx.JSON(http.StatusOK, "OK")
+		}
+	}
+	if choiceType == "movies" {
+		var m structs.Movie;
+		err:=ctx.Bind(&m);
+		err=store.CreateMovie(&m)
+		if err != nil {
+			return ctx.String(http.StatusInternalServerError, err.Error())
+		}else{
+			return ctx.JSON(http.StatusOK, "OK")
+		}
+	}
+
+	return ctx.String(http.StatusBadRequest, "unknown choice type")
+}
 
 // GetChoicesByType returns a list of options to choose from that are of the specified type
 func GetUser(ctx echo.Context) error {
 	// get the type from the context
 	username := ctx.Param("username")
 
-	user := structs.User{"hi",username}
+	user := structs.User{"",username}
 	val,err:=store.GetUser(&user)
 	if err != nil {
 		return ctx.String(http.StatusInternalServerError, err.Error())
 	}else{
 		return ctx.JSON(http.StatusOK, val)
+	}
+
+}
+// GetChoicesByType returns a list of options to choose from that are of the specified type
+func DeleteUserByUsername(ctx echo.Context) error {
+	// get the type from the context
+	username := ctx.Param("username")
+	err:=store.DeleteUserByUsername(username)
+	if err != nil {
+		return ctx.String(http.StatusInternalServerError, err.Error())
+	}else{
+		return ctx.JSON(http.StatusOK,"OK")
 	}
 
 }
