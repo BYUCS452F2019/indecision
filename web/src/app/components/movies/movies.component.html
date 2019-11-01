@@ -1,133 +1,70 @@
 <div class="row" *ngIf="currentList.length > 1">
-    <div>
-        <div class="flip-card">
-            <div class="card text-white bg-danger mb-3 flip-card-inner" [class.flipped]="redFlipped" style="max-width: 20rem;">
-                <div class="flip-card-front">
-                    <div class="card-header">{{currentList[0]?.title}}
-                        <i class="material-icons info-button" (click)="redFlipped=true">
-                          info_outline
-                          </i>
-                    </div>
-                    <div class="card-body">
-                        <img class="choice-image" [src]="currentList[0]?.pictureUrl">
-                    </div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="card-header">
-                        <i class="material-icons info-button left" (click)="redFlipped=false">
-                    arrow_back
-                    </i>
-                        <span>Option 1</span>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{currentList[0]?.title}}</h4>
-                        <!-- <p class="card-text">{{currentList[0]?.description}}</p> -->
-                    </div>
-                </div>
+        <div class="card-holder">
+            <mat-card class="red-card">
+                <mat-card-header class="card-header">
+                    <mat-card-title>{{currentList[0]?.title}}</mat-card-title>
+                    <span class="fill-remaining-space"></span>
+                    <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                        <mat-icon>info_outline</mat-icon>
+                    </button> -->
+                </mat-card-header>
+                <mat-card-content>
+                        <img class="choice-image" [src]="'../../../assets/images/' + currentList[0]?.title + '.jpg'" [alt]="currentList[0]?.pictureUrl">
 
-            </div>
+                </mat-card-content>
+            </mat-card>
+    
+            <button mat-raised-button color="warn" style="margin-top: 10px; width: 100%;" (click)="selectWinner(currentList[0])">I choose you!</button>
         </div>
 
-        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 10px;" (click)="selectWinner(currentList[0])">I choose you!</button>
-    </div>
-
-    <div>
-        <div class="flip-card">
-            <div class="card text-white bg-info mb-3 flip-card-inner" [class.flipped]="blueFlipped" style="max-width: 20rem;">
-                <div class="flip-card-front">
-                    <div class="card-header">{{currentList[1]?.title}}
-                        <i class="material-icons info-button" (click)="blueFlipped=true">
-                      info_outline
-                      </i>
-                    </div>
-                    <div class="card-body">
-                        <img class="choice-image" [src]="currentList[1]?.pictureUrl">
-                    </div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="card-header">
-                        <i class="material-icons info-button left" (click)="blueFlipped=false">
-                    arrow_back
-                    </i>
-                        <span>Option 2</span>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{currentList[1]?.title}}</h4>
-                        <!-- <p class="card-text">{{currentList[1]?.description}}</p> -->
-                    </div>
-                </div>
-
+        <div class="card-holder">
+                <mat-card class="blue-card">
+                    <mat-card-header class="card-header">
+                        <mat-card-title>{{currentList[1]?.title}}</mat-card-title>
+                        <span class="fill-remaining-space"></span>
+                        <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                            <mat-icon>info_outline</mat-icon>
+                        </button> -->
+                    </mat-card-header>
+                        <img class="choice-image" [src]="'../../../assets/images/' + currentList[1]?.title + '.jpg'" [alt]="currentList[1]?.pictureUrl">
+                </mat-card>
+        
+                <button mat-raised-button color="warn" style="margin-top: 10px; width: 100%;" (click)="selectWinner(currentList[1])">I choose you!</button>
             </div>
-        </div>
 
-        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 10px;" (click)="selectWinner(currentList[1])">I choose you!</button>
+            <div *ngIf="currentList.length == 3" class="card-holder">
+                    <mat-card class="yellow-card">
+                        <mat-card-header class="card-header yellow">
+                            <mat-card-title>{{currentList[2]?.title}}</mat-card-title>
+                            <span class="fill-remaining-space"></span>
+                            <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                                <mat-icon>info_outline</mat-icon>
+                            </button> -->
+                        </mat-card-header>
+                            <img class="choice-image" [src]="'../../../assets/images/' + currentList[2]?.title + '.jpg'" [alt]="currentList[2]?.pictureUrl">
+                    </mat-card>
+            
+                    <button mat-raised-button color="warn" style="margin-top: 10px; width: 100%;" (click)="selectWinner(currentList[2])">I choose you!</button>
+                </div>
+
+    
     </div>
-
-    <div *ngIf="currentList.length == 3">
-        <div class="flip-card">
-            <div class="card text-white bg-warning mb-3 flip-card-inner" [class.flipped]="yellowFlipped" style="max-width: 20rem;">
-                <div class="flip-card-front">
-                    <div class="card-header">{{currentList[2]?.title}}
-                        <i class="material-icons info-button" (click)="yellowFlipped=true">
-                      info_outline
-                      </i>
-                    </div>
-                    <div class="card-body">
-                        <img class="choice-image" [src]="currentList[2]?.pictureUrl">
-                    </div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="card-header">
-                        <i class="material-icons info-button left" (click)="yellowFlipped=false">
-                    arrow_back
-                    </i>
-                        <span>Option 3</span>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{currentList[2]?.title}}</h4>
-                        <!-- <p class="card-text">{{currentList[2]?.description}}</p> -->
-                    </div>
-                </div>
-
-            </div>
+    
+    <div class="row win" *ngIf="currentList.length === 1">
+        <div  class="card-holder">
+            <mat-card class="winner">
+                    <mat-card-header>
+                        <mat-card-title>Winner!</mat-card-title>
+                        <mat-card-subtitle>{{currentList[0]?.title}}</mat-card-subtitle>
+                        <span class="fill-remaining-space"></span>
+                        <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                            <mat-icon>info_outline</mat-icon>
+                        </button> -->
+                    </mat-card-header>
+                        <img class="choice-image" [src]="'../../../assets/images/' + currentList[0]?.title + '.jpg'" [alt]="currentList[0]?.pictureUrl">
+                </mat-card>
+        
+                <button mat-raised-button color="accent" style="margin-top: 35px; width: 100%;" (click)="reset()">Pick again!</button>
         </div>
-
-        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 10px;" (click)="selectWinner(currentList[2])">I choose you!</button>
+    
     </div>
-
-</div>
-
-<div class="row win" *ngIf="currentList.length === 1">
-    <div>
-        <div class="flip-card">
-            <div class="card text-white bg-success mb-3 flip-card-inner winner" [class.flipped]="greenFlipped" style="max-width: 20rem;">
-                <div class="flip-card-front">
-
-                    <div class="card-header">Winner!
-                        <i class="material-icons info-button" (click)="greenFlipped=true">
-              info_outline
-              </i>
-                    </div>
-                    <div class="card-body">
-                        <img class="choice-image" [src]="currentList[0]?.pictureUrl">
-                    </div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="card-header">
-                        <i class="material-icons info-button left" (click)="greenFlipped=false">
-                    arrow_back
-                    </i>
-                        <span>Winner!</span>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{currentList[0]?.title}}</h4>
-                        <!-- <p class="card-text">{{winner?.description}}</p> -->
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 35px;" (click)="reset()">Pick again!</button>
-    </div>
-
-</div>

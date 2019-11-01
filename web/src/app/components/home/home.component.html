@@ -1,15 +1,16 @@
+<div class="row">
+    <mat-form-field>
+        <mat-label>Choice Type</mat-label>
+        <mat-select matInput [(ngModel)]="chosenType">
+            <mat-option *ngFor="let c of choiceTypes" [value]="c">{{c}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
 <div class="container">
-    <div class="jumbotron main">
-        <h1 class="display-4">Need help making a decision?</h1>
-        <p class="lead">This application can help that decision making process simpler! It's very bare bones and not complete, but it works at the moment.</p>
-        <hr class="my-4">
-        <div class="button-row">
-            <div class="button-row half">
-                <button type="button" class="btn btn-danger btn-lg btn-block" routerLink="/food">Where should I go to eat?</button>
-            </div>
-            <div class="button-row half">
-                <button type="button" class="btn btn-info btn-lg btn-block" routerLink="/movies">What movie should I watch?</button>
-            </div>
-        </div>
-    </div>
+    <ng-container *ngIf="chosenType == 'Food'">
+        <app-food></app-food>
+    </ng-container>
+    <ng-container *ngIf="chosenType == 'Movies'">
+        <app-movies></app-movies>
+    </ng-container>
 </div>

@@ -1,3 +1,14 @@
 .menu-icon {
     transform: scale(1.25);
 }
+
+.base {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}

@@ -1,17 +1,18 @@
 package main
 
 import (
+	"database/sql"
+	"flag"
+	"fmt"
+
 	"github.com/jpw547/indecision/handlers"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
-	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang-migrate/migrate"
 	"github.com/golang-migrate/migrate/database/mysql"
 	_ "github.com/golang-migrate/migrate/source/file"
-	"fmt"
-	"flag"
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 	// "os"
 )
 
@@ -22,9 +23,8 @@ func main() {
 	port := ":5500"
 	flag.Parse()
 
-
 	//Connect to database
-	dbURL:= fmt.Sprint(*username,":",*password,"@tcp(localhost:3306)/indecision")
+	dbURL := fmt.Sprint(*username, ":", *password, "@tcp(localhost:3306)/indecision")
 	db, err := sql.Open("mysql", dbURL)
 	if err != nil {
 		fmt.Println(err)
@@ -32,7 +32,7 @@ func main() {
 	err = db.Ping()
 	if err != nil {
 		fmt.Println(err)
-	}else{
+	} else {
 		fmt.Println("Successfully connected")
 	}
 	handlers.InitStore(db)
@@ -40,7 +40,7 @@ func main() {
 	//database migrations
 	driver, err := mysql.WithInstance(db, &mysql.Config{})
 	if err != nil {
-		fmt.Println("could not start sql migration... %v", err)
+		fmt.Printf("could not start sql migration... %v", err)
 	}
 
 	m, err := migrate.NewWithDatabaseInstance(
@@ -48,11 +48,11 @@ func main() {
 		"mysql", driver)
 
 	if err != nil {
-		fmt.Println("migration failed... %v", err)
+		fmt.Printf("migration failed... %v", err)
 	}
 
 	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
-		fmt.Println("An error occurred while syncing the database.. %v", err)
+		fmt.Printf("An error occurred while syncing the database.. %v", err)
 	}
 
 	fmt.Println("Database migrated")
@@ -65,8 +65,8 @@ func main() {
 	// define endpoints
 	server.GET("/choices/:type", handlers.GetChoicesByType)
 	server.POST("/choices/:type", handlers.CreateChoice)
-	server.DELETE("/choices/:type", handlers.DeleteChoiceById)
-	
+	server.DELETE("/choices/:type", handlers.DeleteChoiceByID)
+
 	server.POST("/users", handlers.CreateUser)
 	server.GET("/users/:username", handlers.GetUser)
 	server.DELETE("/users/:username", handlers.DeleteUserByUsername)

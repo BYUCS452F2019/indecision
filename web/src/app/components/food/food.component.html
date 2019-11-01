@@ -1,4 +1,4 @@
-<div class="row" *ngIf="currentList.length > 1">
+<!-- <div class="row" *ngIf="currentList.length > 1">
     <div>
         <div class="flip-card">
             <div class="card text-white bg-danger mb-3 flip-card-inner" [class.flipped]="redFlipped" style="max-width: 20rem;">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">{{currentList[0]?.name}}</h4>
-                        <!-- <p class="card-text">{{currentList[0]?.description}}</p> -->
+                        <p class="card-text">{{currentList[0]?.description}}</p>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">{{currentList[1]?.name}}</h4>
-                        <!-- <p class="card-text">{{currentList[1]?.description}}</p> -->
+                        <p class="card-text">{{currentList[1]?.description}}</p>
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">{{currentList[2]?.name}}</h4>
-                        <!-- <p class="card-text">{{currentList[2]?.description}}</p> -->
+                        <p class="card-text">{{currentList[2]?.description}}</p>
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">{{currentList[0]?.name}}</h4>
-                        <!-- <p class="card-text">{{winner?.description}}</p> -->
+                        <p class="card-text">{{winner?.description}}</p>
                     </div>
                 </div>
 
@@ -130,4 +130,72 @@
         <button type="button" class="btn btn-outline-success btn-lg btn-block" style="margin-top: 35px;" (click)="reset()">Pick again!</button>
     </div>
 
-</div>
+</div> -->
+
+<div class="row" *ngIf="currentList.length > 1">
+        <div class="card-holder">
+            <mat-card class="red-card">
+                <mat-card-header class="card-header">
+                    <mat-card-title>{{currentList[0]?.name}}</mat-card-title>
+                    <span class="fill-remaining-space"></span>
+                    <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                        <mat-icon>info_outline</mat-icon>
+                    </button> -->
+                </mat-card-header>
+                    <img class="choice-image" [src]="'../../../assets/images/' + currentList[0]?.name + '.jpg'" [alt]="currentList[0]?.pictureUrl">
+            </mat-card>
+    
+            <button mat-raised-button color="warn" style="margin-top: 10px; width: 100%;" (click)="selectWinner(currentList[0])">I choose you!</button>
+        </div>
+
+        <div class="card-holder">
+                <mat-card class="blue-card">
+                    <mat-card-header class="card-header">
+                        <mat-card-title>{{currentList[1]?.name}}</mat-card-title>
+                        <span class="fill-remaining-space"></span>
+                        <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                            <mat-icon>info_outline</mat-icon>
+                        </button> -->
+                    </mat-card-header>
+                        <img class="choice-image" [src]="'../../../assets/images/' + currentList[1]?.name + '.jpg'" [alt]="currentList[1]?.pictureUrl">
+                </mat-card>
+        
+                <button mat-raised-button color="warn" style="margin-top: 10px; width: 100%;" (click)="selectWinner(currentList[1])">I choose you!</button>
+            </div>
+
+            <div *ngIf="currentList.length == 3" class="card-holder">
+                    <mat-card class="yellow-card">
+                        <mat-card-header class="card-header yellow">
+                            <mat-card-title>{{currentList[2]?.name}}</mat-card-title>
+                            <span class="fill-remaining-space"></span>
+                            <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                                <mat-icon>info_outline</mat-icon>
+                            </button> -->
+                        </mat-card-header>
+                            <img class="choice-image" [src]="'../../../assets/images/' + currentList[2]?.name + '.jpg'" [alt]="currentList[2]?.pictureUrl">
+                    </mat-card>
+            
+                    <button mat-raised-button color="warn" style="margin-top: 10px; width: 100%;" (click)="selectWinner(currentList[2])">I choose you!</button>
+                </div>
+
+    
+    </div>
+    
+    <div class="row win" *ngIf="currentList.length === 1">
+        <div class="card-holder">
+            <mat-card class="winner">
+                    <mat-card-header>
+                        <mat-card-title>Winner!</mat-card-title>
+                        <mat-card-subtitle>{{currentList[0]?.name}}</mat-card-subtitle>
+                        <span class="fill-remaining-space"></span>
+                        <!-- <button mat-icon-button (click)="redFlipped=true" class="info-button">
+                            <mat-icon>info_outline</mat-icon>
+                        </button> -->
+                    </mat-card-header>
+                        <img class="choice-image" [src]="'../../../assets/images/' + currentList[0]?.name + '.jpg'" [alt]="currentList[0]?.pictureUrl">
+                </mat-card>
+        
+                <button mat-raised-button color="accent" style="margin-top: 35px; width: 100%;" (click)="reset()">Pick again!</button>
+        </div>
+    
+    </div>

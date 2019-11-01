@@ -1,11 +1,11 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
+
 	"github.com/jpw547/indecision/structs"
 	"github.com/labstack/echo"
-	"fmt"
-
 )
 
 var food []structs.Restaurant
@@ -164,115 +164,73 @@ func init() {
 	}
 }
 
-
 // GetChoicesByType returns a list of options to choose from that are of the specified type
 func GetChoicesByType(ctx echo.Context) error {
 	// get the type from the context
 	choiceType := ctx.Param("type")
 	// TODO: implement database access for choices
 	if choiceType == "food" {
-		val,err:=store.GetFood()
+		val, err := store.GetFood()
 		if err != nil {
 			return ctx.String(http.StatusInternalServerError, err.Error())
-		}else{
-			return ctx.JSON(http.StatusOK, val)
 		}
+
+		return ctx.JSON(http.StatusOK, val)
+		// return ctx.JSON(http.StatusOK, food)
 	}
 	if choiceType == "movies" {
-		val,err:=store.GetMovies()
+		val, err := store.GetMovies()
 		if err != nil {
 			return ctx.String(http.StatusInternalServerError, err.Error())
-		}else{
-			return ctx.JSON(http.StatusOK, val)
 		}
+
+		return ctx.JSON(http.StatusOK, val)
+		// return ctx.JSON(http.StatusOK, movies)
 	}
 
 	return ctx.String(http.StatusBadRequest, "unknown choice type")
 }
-// GetChoicesByType returns a list of options to choose from that are of the specified type
-func DeleteChoiceById(ctx echo.Context) error {
+
+// DeleteChoiceByID deletes a choice with the given ID
+func DeleteChoiceByID(ctx echo.Context) error {
 	// get the type from the context
 	choiceType := ctx.Param("type")
 	fmt.Println(choiceType)
-	err:=store.DeleteChoiceById(choiceType)
+	err := store.DeleteChoiceByID(choiceType)
 	if err != nil {
 		return ctx.String(http.StatusInternalServerError, err.Error())
-	}else{
-		return ctx.JSON(http.StatusOK,"OK")
 	}
 
+	return ctx.JSON(http.StatusOK, "OK")
 }
 
-
-// GetChoicesByType returns a list of options to choose from that are of the specified type
-func CreateUser(ctx echo.Context) error {
-	// get the type from the context
-	var u structs.User;
-	err:=ctx.Bind(&u);
-	if err != nil {
-		return ctx.String(http.StatusBadRequest, err.Error())
-	}
-	err=store.CreateUser(&u)
-	if err != nil {
-		return ctx.String(http.StatusInternalServerError, err.Error())
-	}else{
-		return ctx.String(http.StatusOK,"OK")
-	}
-
-}
-// GetChoicesByType returns a list of options to choose from that are of the specified type
+// CreateChoice records a choice in the database
 func CreateChoice(ctx echo.Context) error {
 	// get the type from the context
 	// get the type from the context
 	choiceType := ctx.Param("type")
 	// TODO: implement database access for choices
 	if choiceType == "food" {
-		var r structs.Restaurant;
-		err:=ctx.Bind(&r);
-		err=store.CreateRestaurant(&r)
+		var r structs.Restaurant
+		err := ctx.Bind(&r)
+		err = store.CreateRestaurant(&r)
 		if err != nil {
 			return ctx.String(http.StatusInternalServerError, err.Error())
-		}else{
-			return ctx.JSON(http.StatusOK, "OK")
 		}
+
+		return ctx.JSON(http.StatusOK, "OK")
 	}
+
 	if choiceType == "movies" {
-		var m structs.Movie;
-		err:=ctx.Bind(&m);
-		err=store.CreateMovie(&m)
+		var m structs.Movie
+		err := ctx.Bind(&m)
+		err = store.CreateMovie(&m)
 		if err != nil {
 			return ctx.String(http.StatusInternalServerError, err.Error())
-		}else{
-			return ctx.JSON(http.StatusOK, "OK")
 		}
+
+		return ctx.JSON(http.StatusOK, "OK")
 	}
 
 	return ctx.String(http.StatusBadRequest, "unknown choice type")
-}
-
-// GetChoicesByType returns a list of options to choose from that are of the specified type
-func GetUser(ctx echo.Context) error {
-	// get the type from the context
-	username := ctx.Param("username")
-
-	user := structs.User{"",username}
-	val,err:=store.GetUser(&user)
-	if err != nil {
-		return ctx.String(http.StatusInternalServerError, err.Error())
-	}else{
-		return ctx.JSON(http.StatusOK, val)
-	}
-
-}
-// GetChoicesByType returns a list of options to choose from that are of the specified type
-func DeleteUserByUsername(ctx echo.Context) error {
-	// get the type from the context
-	username := ctx.Param("username")
-	err:=store.DeleteUserByUsername(username)
-	if err != nil {
-		return ctx.String(http.StatusInternalServerError, err.Error())
-	}else{
-		return ctx.JSON(http.StatusOK,"OK")
-	}
-
 }

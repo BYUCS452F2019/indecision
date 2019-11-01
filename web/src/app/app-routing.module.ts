@@ -4,25 +4,23 @@ import { FoodComponent } from './components/food/food.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
+import { UsersComponent } from './components/users/users.component';
+import { TablesComponent } from './components/tables/tables.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'play',
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'play',
     component: HomeComponent
   },
   {
-    path: 'food',
-    component: FoodComponent
-  },
-  {
-    path: 'movies',
-    component: MoviesComponent
+    path: 'tables',
+    component: TablesComponent
   },
   {
     path: 'about',

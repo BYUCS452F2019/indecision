@@ -1,3 +1,39 @@
+.card-header {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: flex-start;
+    color: white;
+    &.yellow {
+        color: black;
+    }
+}
+
+.red-card {
+    background-image: linear-gradient(to bottom right, #ec3e3e, #ee4343, #e76262);
+    animation: createBox .5s;
+    width: 250px;
+    max-width: 250px;
+}
+
+.blue-card {
+    background-image: linear-gradient(to bottom right, #0856bd, #2571d3, #437dcf);
+    animation: createBox .5s;
+    width: 250px;
+    max-width: 250px;
+}
+
+.yellow-card {
+    background-image: linear-gradient(to bottom right, #ffc107, #ffca28, #ffd54f);
+    animation: createBox .5s;
+    width: 250px;
+    max-width: 250px;
+}
+
+.card-holder {
+    animation: createBox .5s;
+}
+
 .flipped {
     transform: rotateY(180deg);
 }
@@ -38,9 +74,15 @@
     height: 142px;
 }
 
+.fill-remaining-space {
+    flex: 1 0 auto;
+}
+
 .info-button {
     float: right;
+    align-self: flex-end;
     cursor: pointer;
+    padding-bottom: 40px;
     &.left {
         float: left;
         margin-right: 10px;
@@ -53,8 +95,8 @@
     width: 100%;
     height: 80vh;
     justify-content: space-evenly;
-    align-items: center;
-    padding: 15px;
+    align-items: flex-start;
+    padding-top: 50px;
     &.win {
         margin: auto;
     }
@@ -62,10 +104,13 @@
 
 .winner {
     animation: createBox .5s;
-    box-shadow: 0 0 25px 10px #fff, /* inner white */
-    0 0 35px 15px #ffc400, /* middle magenta */
-    0 0 40px 20px #ff9100;
-    /* outer cyan */
+    // box-shadow: 0 0 25px 10px #fff,
+    // 0 0 15px 5px #ffc400,
+    // 0 0 20px 10px #ff9100;
+
+    background-color: #00c853;
+    width: 250px;
+    max-width: 250px;
 }
 
 @keyframes createBox {
