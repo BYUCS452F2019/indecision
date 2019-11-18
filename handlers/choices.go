@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/jpw547/indecision/structs"
+	"github.com/jpw547/indecision/yelp"
 	"github.com/labstack/echo"
 )
 
@@ -170,7 +171,8 @@ func GetChoicesByType(ctx echo.Context) error {
 	choiceType := ctx.Param("type")
 	// TODO: implement database access for choices
 	if choiceType == "food" {
-		val, err := store.GetFood()
+		// val, err := store.GetFood()
+		val, err := yelp.GetRestaurantList()
 		if err != nil {
 			return ctx.String(http.StatusInternalServerError, err.Error())
 		}
@@ -233,4 +235,14 @@ func CreateChoice(ctx echo.Context) error {
 	}
 
 	return ctx.String(http.StatusBadRequest, "unknown choice type")
+}
+
+// GetNewList ...
+func GetNewList(ctx echo.Context) error {
+	y, err := yelp.GetRestaurantList()
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, err)
+	}
+
+	return ctx.JSON(http.StatusOK, y)
 }

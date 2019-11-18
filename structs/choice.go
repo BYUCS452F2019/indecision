@@ -30,3 +30,43 @@ type Movie struct {
 	Title   string `json:"title"`
 	Genre   string `json:"genre,omitempty"`
 }
+
+// A YelpBusiness is the object returned by their API
+type YelpBusiness struct {
+	ID          string `json:"id"`
+	Alias       string `json:"alias"`
+	Name        string `json:"name"`
+	ImageURL    string `json:"image_url"`
+	IsClosed    bool   `json:"is_closed"`
+	URL         string `json:"url"`
+	ReviewCount int    `json:"review_count"`
+	Categories  []struct {
+		Alias string `json:"alias"`
+		Title string `json:"title"`
+	} `json:"categories"`
+	Rating      float64 `json:"rating"`
+	Coordinates struct {
+		Latitude  float64 `json:"latitude"`
+		Longitude float64 `json:"longitude"`
+	} `json:"coordinates"`
+	Transactions []string `json:"transactions"`
+	Price        string   `json:"price"`
+	Location     struct {
+		Address1       string   `json:"address1"`
+		Address2       string   `json:"address2"`
+		Address3       string   `json:"address3"`
+		City           string   `json:"city"`
+		ZipCode        string   `json:"zip_code"`
+		Country        string   `json:"country"`
+		State          string   `json:"state"`
+		DisplayAddress []string `json:"display_address"`
+	} `json:"location"`
+	Phone        string  `json:"phone"`
+	DisplayPhone string  `json:"display_phone"`
+	Distance     float64 `json:"distance"`
+}
+
+// A YelpResponse is the response object returned by their API
+type YelpResponse struct {
+	Businesses []YelpBusiness `json:"businesses"`
+}
