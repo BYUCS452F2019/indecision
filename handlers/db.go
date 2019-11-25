@@ -3,8 +3,12 @@ package handlers
 import (
 	"database/sql"
 	"fmt"
-
 	"github.com/jpw547/indecision/structs"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/golang-migrate/migrate"
+	"github.com/golang-migrate/migrate/database/mysql"
+	_ "github.com/golang-migrate/migrate/source/file"
+
 )
 
 // Store is an interface for our database usage
@@ -27,8 +31,40 @@ type dbStore struct {
 var store Store
 
 // InitStore initializes our data store
-func InitStore(db *sql.DB) {
+func InitStore(username string, password string, migrationDir string) error{
+	//Connect to database
+	dbURL := fmt.Sprint(username, ":", password, "@tcp(localhost:3306)/indecision")
+	db, err := sql.Open("mysql", dbURL)
+	if err != nil {
+		return err
+	}
+	err = db.Ping()
+	if err != nil {
+		return err
+	} else {
+		fmt.Println("Successfully connected")
+	}
+		//database migrations
+	driver, err := mysql.WithInstance(db, &mysql.Config{})
+	if err != nil {
+		return err
+	}
+
+	m, err := migrate.NewWithDatabaseInstance(
+		fmt.Sprintf("file://%s", migrationDir), // file://path/to/directory
+		"mysql", driver)
+
+	if err != nil {
+		return err
+	}
+
+	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
+		return err
+	}
+
+	fmt.Println("Database migrated")
 	store = &dbStore{db: db}
+	return nil
 }
 
 // CreateUser performs the database transaction to add a user to the database
@@ -200,7 +236,7 @@ func (store *dbStore) GetUsers() ([]*structs.User, error) {
 
 // GetFood performs the database transaction that gets a list of restaurants from the database
 func (store *dbStore) GetFood() ([]*structs.Restaurant, error) {
-
+	fmt.Println("HEERe")
 	rows, err := store.db.Query("SELECT choice_id,picture_url,type,restaurant_id,name from choice join restaurant on choice.id=restaurant.choice_id")
 	if err != nil {
 		return nil, err

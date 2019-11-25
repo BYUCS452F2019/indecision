@@ -164,7 +164,7 @@ func init() {
 	}
 }
 
-// GetChoicesByType returns a list of options to choose from that are of the specified type
+// // GetChoicesByType returns a list of options to choose from that are of the specified type
 func GetChoicesByType(ctx echo.Context) error {
 	// get the type from the context
 	choiceType := ctx.Param("type")

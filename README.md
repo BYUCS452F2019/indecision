@@ -28,7 +28,7 @@ Using various APIs to query data such as Yelp, Fandango, etc. I know at least th
  - Back end server would preferrably be done in Golang (again, it's what I am most familiar with) but I am open to other options if they seem to fit the scope better.
 
 ## To Run
-To start the server install mysql and create the database indecision
+To start the server install mysql or mongo and create the database indecision
 
-Run the command "go run server.go -username [mysqlusername] -password [mysqlpassword]"
+Run the command with optional flags "go run server.go -username [mysqlusername] -password [mysqlpassword] -database [mongo|mysql] -mockData [true|false]"
 

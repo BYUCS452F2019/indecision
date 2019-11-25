@@ -1,62 +1,33 @@
 package main
 
 import (
-	"database/sql"
 	"flag"
 	"fmt"
-
 	"github.com/jpw547/indecision/handlers"
 
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/golang-migrate/migrate"
-	"github.com/golang-migrate/migrate/database/mysql"
-	_ "github.com/golang-migrate/migrate/source/file"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	// "os"
 )
 
 func main() {
 	var migrationDir = flag.String("migration.files", "./migrations", "Directory where the migration files are located ?")
 	var username = flag.String("username", "user", "Username for mysql database")
 	var password = flag.String("password", "user", "Password for mysql database")
+	var dbType = flag.String("database", "mysql", "Database type: mongo or mysql")
+	var mockData = flag.Bool("mockData",false, "Insert Mock Data")
+
 	port := ":5500"
 	flag.Parse()
 
-	//Connect to database
-	dbURL := fmt.Sprint(*username, ":", *password, "@tcp(localhost:3306)/indecision")
-	db, err := sql.Open("mysql", dbURL)
-	if err != nil {
-		fmt.Println(err)
+	var err error
+	if *dbType == "mongo" {
+		err = handlers.InitNoSQLStore(*mockData)
+	}else{
+		err = handlers.InitStore(*username,*password,*migrationDir)
 	}
-	err = db.Ping()
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println("Successfully connected")
+	if err!=nil {
+		fmt.Println("Unable to connect ",err)
 	}
-	handlers.InitStore(db)
-
-	//database migrations
-	driver, err := mysql.WithInstance(db, &mysql.Config{})
-	if err != nil {
-		fmt.Printf("could not start sql migration... %v", err)
-	}
-
-	m, err := migrate.NewWithDatabaseInstance(
-		fmt.Sprintf("file://%s", *migrationDir), // file://path/to/directory
-		"mysql", driver)
-
-	if err != nil {
-		fmt.Printf("migration failed... %v", err)
-	}
-
-	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
-		fmt.Printf("An error occurred while syncing the database.. %v", err)
-	}
-
-	fmt.Println("Database migrated")
-	defer db.Close()
 
 	server := echo.New()
 	server.Pre(middleware.RemoveTrailingSlash())
@@ -70,7 +41,6 @@ func main() {
 	server.POST("/users", handlers.CreateUser)
 	server.GET("/users/:username", handlers.GetUser)
 	server.DELETE("/users/:username", handlers.DeleteUserByUsername)
-
 	server.Group("", middleware.StaticWithConfig(middleware.StaticConfig{
 		Root:   "web-dist",
 		Index:  "index.html",
