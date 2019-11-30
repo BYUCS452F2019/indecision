@@ -1,5 +1,9 @@
 package structs
 
+import (
+	"time"
+)
+
 // A User represents the information needed about someone using the application
 type User struct {
 	ID       string `json:"id"`
@@ -11,6 +15,14 @@ type Choice struct {
 	ID         string `json:"choiceID"`
 	PictureURL string `json:"pictureUrl"`
 	Type       string `json:"type"`
+}
+
+// A HistoryRecord is a previous choice made by a user
+type HistoryRecord struct {
+	ID        string    `json:"id"`
+	UserID    string    `json:"user_id"`
+	ChoiceID  string    `json:"choice_id"`
+	Timestamp time.Time `json:"timestamp"`
 }
 
 // A Restaurant is a type of Choice

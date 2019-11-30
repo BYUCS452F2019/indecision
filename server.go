@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/jpw547/indecision/db"
 	"github.com/jpw547/indecision/handlers"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -73,6 +74,11 @@ func main() {
 		HTML5:  true,
 		Browse: true,
 	}))
+
+	db.GetDB().OpenConnection()
+	db.GetDB().CreateUser("jpw547")
+
+	defer db.GetDB().CloseConnection()
 
 	server.Start(port)
 }
